@@ -3,81 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Downloader Links</title>
-    <link rel="icon" type="image/svg+xml"
-     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M5 20h14v-2H5v2zm7-18L5.33 9h3.67v4h6V9h3.67L12 2z'/></svg>">
+    <title>DL Links - All-in-One Downloader</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --container-bg: rgba(255, 255, 255, 0.8);
+            --text-color: #333;
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --container-bg: rgba(30, 41, 59, 0.7);
+            --text-color: #f1f5f9;
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f0f2f5;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            transition: all 0.3s ease;
         }
+
         .container {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
+            background: var(--container-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            width: 90%;
+            max-width: 420px;
             text-align: center;
         }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
         h1 {
-            color: #333;
-            margin-bottom: 25px;
-            font-size: 24px;
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 800;
+            background: linear-gradient(45deg, #007bff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
+        .theme-toggle {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0,0,0,0.05);
+            color: var(--text-color);
+        }
+
+        .link-grid {
+            display: grid;
+            gap: 12px;
+        }
+
         .link-button {
-            display: block;
-            width: 100%;
-            padding: 15px 0;
-            margin-bottom: 15px;
-            background-color: #007bff;
-            color: white;
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-sizing: border-box; /* Ensures padding doesn't affect width */
+            color: white;
+            border-radius: 16px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
+
+        .link-button i {
+            margin-right: 12px;
+        }
+
         .link-button:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
-        .link-button:active {
-            transform: translateY(0);
+
+        /* Platform Colors */
+        .tiktok { background: linear-gradient(45deg, #000000, #25F4EE, #FE2C55); }
+        .pinterest { background: #E60023; }
+        .facebook { background: #1877F2; }
+        .youtube { background: #FF0000; }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            opacity: 0.6;
         }
-        /* Optional specific colors for variety */
-        .snaptik { background-color: #32C5FF; }
-        .klickpin { background-color: #FF2E54; }
-        .fdown { background-color: #3b5998; }
-        .ytdown { background-color: #FF0000; }
     </style>
 </head>
-<body>
+<body data-theme="light">
 
     <div class="container">
-        <h1>Downloader Links</h1>
+        <div class="header">
+            <h1>DL LINKS</h1>
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">
+                <i data-lucide="moon"></i>
+            </button>
+        </div>
         
-        <a href="https://snaptik.app/en2" target="_blank" class="link-button snaptik">
-            TikTok Video Download
-        </a>
-        
-        <a href="https://klickpin.com/" target="_blank" class="link-button klickpin">
-            Pinterest Video Downloader
-        </a>
-        
-        <a href="https://fdownloader.net/en" target="_blank" class="link-button fdown">
-            Facebook Video Downloader
-        </a>
-        
-        <a href="https://ytdown.to/en2/" target="_blank" class="link-button ytdown">
-            YouTube Video Downloader
-        </a>
+        <div class="link-grid">
+            <a href="https://snaptik.app/en2" target="_blank" class="link-button tiktok">
+                <i data-lucide="video"></i> TikTok Downloader
+            </a>
+            
+            <a href="https://klickpin.com/" target="_blank" class="link-button pinterest">
+                <i data-lucide="image"></i> Pinterest Saver
+            </a>
+            
+            <a href="https://fdownloader.net/en" target="_blank" class="link-button facebook">
+                <i data-lucide="facebook"></i> Facebook Video
+            </a>
+            
+            <a href="https://ytdown.to/en2/" target="_blank" class="link-button youtube">
+                <i data-lucide="youtube"></i> YouTube Downloader
+            </a>
+        </div>
+
+        <div class="footer">
+            Built by PK • 2026
+        </div>
     </div>
 
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('themeBtn');
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            body.setAttribute('data-theme', newTheme);
+            
+            // Update icon
+            const iconName = newTheme === 'light' ? 'moon' : 'sun';
+            themeBtn.innerHTML = `<i data-lucide="${iconName}"></i>`;
+            lucide.createIcons();
+        }
+    </script>
 </body>
 </html>
